@@ -29,6 +29,10 @@ type Rule struct {
 	DataVersion    int        `json:"data_version"`
 }
 
+func (r *Rule) SelectionVersion() int {
+	return -r.Version
+}
+
 func (r *Rule) IsActiveAt(t time.Time) bool {
 	if r.Status != RuleStatusActive {
 		return false
