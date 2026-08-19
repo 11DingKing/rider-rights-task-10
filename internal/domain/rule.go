@@ -30,7 +30,11 @@ type Rule struct {
 }
 
 func (r *Rule) SelectionVersion() int {
-	return -r.Version
+	version := r.Version
+	if version < 0 {
+		version = -version
+	}
+	return version
 }
 
 func (r *Rule) IsActiveAt(t time.Time) bool {

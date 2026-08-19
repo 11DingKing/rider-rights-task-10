@@ -52,7 +52,7 @@ func (a *Adjudicator) Adjudicate(ctx context.Context, item *domain.RightsCase, r
 		if matched[i].Priority != matched[j].Priority {
 			return matched[i].Priority > matched[j].Priority
 		}
-		return matched[i].SelectionVersion() > matched[j].SelectionVersion()
+		return preferNewerRule(matched[i], matched[j])
 	})
 
 	chosen := matched[0]
